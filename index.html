@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en-MY">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://*.googleusercontent.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buy.polar.sh https://polar.sh;" />
+  <script>
+    (function () {
+      var q = window.location.search || '';
+      if (q.indexOf('checkout_id=') !== -1 || q.indexOf('checkout=') !== -1) {
+        window.location.replace('./app.html' + q);
+      }
+    })();
+  </script>
+  <title>MyPayroll Statutory Doctor — Malaysia KWSP i-Akaun, PERKESO ASSIST, LHDN CP39 &amp; Bulk Salary Converter</title>
+  <meta name="description" content="Convert SME Excel/CSV payroll sheets into official KWSP i-Akaun (incl. 2% Foreign Worker EPF), PERKESO ASSIST 244-byte TXT, LHDN CP39 TXT & DuitNow Bulk Salary files in 15 seconds. RM 39 once, zero monthly per-employee fees." />
+  <meta name="keywords" content="KWSP i-Akaun CSV converter Malaysia, PERKESO ASSIST text file generator, LHDN CP39 e-Data PCB text file, Malaysia 2% foreign worker EPF calculator, SME payroll Malaysia no monthly fee" />
+  <link rel="canonical" href="https://hyperfetch-tools.github.io/mypayroll/" />
+  <meta property="og:title" content="MyPayroll Statutory Doctor — Malaysia EPF, SOCSO/EIS & CP39 File Generator" />
+  <meta property="og:description" content="Stop paying RM 15/employee every month just to export KWSP, PERKESO ASSIST, LHDN CP39 & Bank Bulk Salary files. Convert Excel sheets in 15 seconds for RM 39 once." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hyperfetch-tools.github.io/mypayroll/" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MyPayroll Statutory Doctor",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web Browser (Windows, macOS, Android, iOS)",
+    "offers": {
+      "@type": "Offer",
+      "price": "39.00",
+      "priceCurrency": "MYR"
+    },
+    "description": "Malaysian statutory payroll file compiler converting SME salary CSV/Excel sheets into KWSP i-Akaun CSV (including 2% Foreign Worker EPF), PERKESO ASSIST 244-byte fixed-width TXT, LHDN e-Data PCB CP39 TXT, and DuitNow Bulk Salary CSV."
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0b1f3a;
+      --navy-mid: #132d52;
+      --emerald: #059669;
+      --emerald-dark: #047857;
+      --emerald-soft: #ecfdf5;
+      --emerald-border: #a7f3d0;
+      --indigo: #1d4ed8;
+      --indigo-soft: #eff6ff;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --ink: #0f172a;
+      --ink-secondary: #475569;
+      --ink-muted: #64748b;
+      --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono: "IBM Plex Mono", monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: var(--font-sans); background: var(--bg); color: var(--ink); line-height: 1.6; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 22px; }
+    .mono { font-family: var(--font-mono); }
+
+    /* Top Suite Switcher Bar */
+    .suite-bar {
+      background: var(--navy);
+      color: #cbd5e1;
+      font-size: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .suite-bar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .suite-links { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+    .suite-pill {
+      color: #e2e8f0;
+      text-decoration: none;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-weight: 600;
+      background: rgba(255,255,255,0.07);
+    }
+    .suite-pill.active { background: var(--emerald); color: #fff; }
+
+    /* Sticky Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--navy); font-weight: 800; font-size: 16.5px; }
+    .brand-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--navy); color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .nav-links { display: flex; gap: 22px; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--ink-secondary); font-size: 14px; font-weight: 600; }
+    .nav-links a:hover { color: var(--navy); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 11px 20px; border-radius: 9px; font-weight: 700; font-size: 14px;
+      text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: 0.15s;
+    }
+    .btn-emerald { background: var(--emerald); color: #fff; }
+    .btn-emerald:hover { background: var(--emerald-dark); }
+    .btn-navy { background: var(--navy); color: #fff; }
+    .btn-navy:hover { background: var(--navy-mid); }
+    .btn-outline { background: #fff; color: var(--navy); border-color: #cbd5e1; }
+    .btn-outline:hover { background: #f1f5f9; }
+
+    /* Hero */
+    .hero {
+      padding: 64px 0 56px;
+      background: radial-gradient(circle at 85% 15%, #ecfdf5 0%, #f8fafc 52%);
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 5px 12px; border-radius: 999px;
+      background: var(--emerald-soft); border: 1px solid var(--emerald-border);
+      color: var(--emerald-dark); font-size: 12px; font-weight: 700; margin-bottom: 16px;
+    }
+    h1 {
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.14;
+      letter-spacing: -0.025em;
+      color: var(--navy);
+      margin: 0 0 16px;
+    }
+    .hero-lead {
+      font-size: 16.5px;
+      color: var(--ink-secondary);
+      margin: 0 0 24px;
+      max-width: 560px;
+    }
+    .hero-cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+    .trust-strip { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-muted); font-weight: 600; }
+
+    /* Terminal Preview Card */
+    .preview-card {
+      background: var(--navy);
+      color: #f8fafc;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 22px 45px rgba(11,31,58,0.18);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .preview-head {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-bottom: 12px; margin-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      font-size: 12px; color: #94a3b8;
+    }
+    .portal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    .portal-box {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 9px;
+      padding: 11px 12px;
+    }
+    .portal-tag { font-size: 10.5px; color: #34d399; font-weight: 700; letter-spacing: 0.05em; }
+    .portal-title { font-size: 13px; font-weight: 700; margin: 2px 0; }
+    .portal-sub { font-size: 11px; color: #cbd5e1; }
+    .byte-snippet {
+      background: #061224;
+      border-radius: 8px;
+      padding: 11px 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #a7f3d0;
+      overflow-x: auto;
+      line-height: 1.55;
+    }
+
+    /* Sections */
+    section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+    .sec-head { text-align: center; max-width: 700px; margin: 0 auto 40px; }
+    .sec-head h2 { font-size: 29px; color: var(--navy); margin: 6px 0 10px; letter-spacing: -0.02em; }
+    .sec-head p { margin: 0; color: var(--ink-secondary); font-size: 15.5px; }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 18px; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+    }
+    .card h3 { margin: 8px 0; font-size: 17px; color: var(--navy); }
+    .card p { margin: 0; font-size: 13.8px; color: var(--ink-secondary); }
+    .badge {
+      display: inline-block; padding: 3px 8px; border-radius: 6px;
+      font-size: 11px; font-weight: 700; font-family: var(--font-mono);
+      background: var(--indigo-soft); color: var(--indigo);
+    }
+
+    /* Comparison Table */
+    .comp-wrap { overflow-x: auto; background: #fff; border: 1px solid var(--border); border-radius: 12px; }
+    table.comp { width: 100%; border-collapse: collapse; font-size: 14px; }
+    table.comp th, table.comp td { padding: 14px 16px; border-bottom: 1px solid var(--border); text-align: left; }
+    table.comp th { background: #f1f5f9; color: var(--navy); font-weight: 700; }
+    .hl-col { background: #ecfdf5; font-weight: 700; color: #065f46; }
+
+    /* Pricing */
+    .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 20px; align-items: stretch; }
+    .price-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 14px;
+      padding: 26px; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .price-card.featured { border: 2px solid var(--emerald); box-shadow: 0 14px 32px rgba(5,150,105,0.1); }
+    .price-amt { font-size: 34px; font-weight: 800; color: var(--navy); margin: 8px 0 4px; }
+    .price-list { list-style: none; padding: 0; margin: 16px 0 22px; font-size: 13.8px; color: var(--ink-secondary); }
+    .price-list li { padding: 5px 0; }
+
+    details.faq {
+      background: #fff; border: 1px solid var(--border); border-radius: 10px;
+      padding: 15px 18px; margin-bottom: 10px; max-width: 820px; margin-left: auto; margin-right: auto;
+    }
+    details.faq summary { font-weight: 700; color: var(--navy); cursor: pointer; }
+    details.faq p { margin: 10px 0 0; font-size: 14px; color: var(--ink-secondary); }
+
+    footer { background: var(--navy); color: #94a3b8; padding: 44px 0 32px; font-size: 13.5px; }
+    footer a { color: #cbd5e1; text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="suite-bar">
+    <div class="container suite-bar-inner">
+      <div class="suite-links">
+        <span class="mono" style="font-size:11px;color:#94a3b8;">HYPERFETCH MALAYSIA SME SUITE:</span>
+        <a class="suite-pill" href="https://hyperfetch-tools.github.io/myinvois/">1. MyInvois e-Invoice Doctor</a>
+        <a class="suite-pill active" href="./index.html">2. MyPayroll Statutory Doctor</a>
+      </div>
+      <span>Due 15th Monthly: KWSP (incl. 2% Foreign Worker) · PERKESO RM 6k Ceiling · LHDN CP39</span>
+    </div>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="./index.html" class="brand">
+        <span class="brand-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M2.5 4h11M2.5 8h11M2.5 12h7"/>
+          </svg>
+        </span>
+        <span>MyPayroll Statutory Doctor</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#outputs">4 Portal Files</a>
+        <a href="#industries">Who It's For</a>
+        <a href="#comparison">Why Not Monthly HR SaaS</a>
+        <a href="#pricing">Pricing (RM 39 Once)</a>
+        <a href="./foreign-worker-epf-perkeso-guide.html">2026 EPF/SOCSO Guide</a>
+      </nav>
+      <div style="display:flex;gap:8px;">
+        <a href="./app.html?demo=1" class="btn btn-outline" style="padding:9px 14px;font-size:13px;">Live Demo</a>
+        <a href="./app.html" class="btn btn-emerald" style="padding:9px 16px;font-size:13px;">Open Converter App →</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">2026 MALAYSIA STATUTORY COMPLIANT · ZERO MONTHLY FEES</div>
+        <h1>Turn Your Salary Excel Into KWSP, PERKESO ASSIST, LHDN CP39 &amp; Bank Bulk Files in 15s.</h1>
+        <p class="hero-lead">
+          Stop paying RM 10–RM 18 per employee every month just to generate statutory upload files. Drop one Excel/CSV sheet to fix stripped MyKad leading zeros, auto-apply <strong>2% Foreign Worker EPF</strong> &amp; the <strong>RM 6,000 PERKESO ceiling</strong>, and export all 4 government &amp; bank files instantaneously.
+        </p>
+        <div class="hero-cta-row">
+          <a href="./app.html" class="btn btn-emerald">Convert Salary Sheet Free (Up to 2 Staff) →</a>
+          <a href="./app.html?demo=1" class="btn btn-outline">Try 6-Employee Interactive Demo</a>
+        </div>
+        <div class="trust-strip">
+          <span>✓ PDPA Stateless RAM (Zero Salary DB)</span>
+          <span>✓ Unlimited Staff &amp; Unlimited Companies</span>
+          <span>✓ One-Time RM 39 (or SME Bundle)</span>
+        </div>
+      </div>
+
+      <div class="preview-card" aria-label="4 Official Statutory Outputs">
+        <div class="preview-head">
+          <span class="mono">ONE EXCEL SHEET → 4 PORTAL-READY UPLOADS</span>
+          <span style="color:#34d399;font-weight:700;">100% Schema Valid</span>
+        </div>
+        <div class="portal-grid">
+          <div class="portal-box">
+            <div class="portal-tag">PORTAL 01 · KWSP i-AKAUN</div>
+            <div class="portal-title">Borang A (.CSV)</div>
+            <div class="portal-sub">Auto +1 Contribution Month, 11%/13% Local &amp; 2% Foreign Worker EPF</div>
+          </div>
+          <div class="portal-box">
+            <div class="portal-tag">PORTAL 02 · PERKESO ASSIST</div>
+            <div class="portal-title">244-Byte Combined (.TXT)</div>
+            <div class="portal-sub">SOCSO Act 4 + EIS Act 800 + SKBBK in padded integer cents</div>
+          </div>
+          <div class="portal-box">
+            <div class="portal-tag">PORTAL 03 · LHDN e-PCB PLUS</div>
+            <div class="portal-title">CP39 Fixed-Width (.TXT)</div>
+            <div class="portal-sub">Exact 57-byte Header (H) + 136-byte Detail (D) &amp; IG TIN strip</div>
+          </div>
+          <div class="portal-box">
+            <div class="portal-tag">PORTAL 04 · DUITNOW / BANK</div>
+            <div class="portal-title">Bulk Salary (.CSV)</div>
+            <div class="portal-sub">Exact Net Pay + auto SWIFT/BIC (MBBEMYKL, CIBBMYKL, PBBEMYKL)</div>
+          </div>
+        </div>
+        <div class="byte-snippet">
+          <div>// Auto-Repaired Output Preview:</div>
+          <div>MyKad: "20415-14-5678" → "020415145678" (Leading 0 restored)</div>
+          <div>Foreign Staff: KWSP 2%+2% | SOCSO Cat 2 | EIS 000000</div>
+          <div>CP39 Header: H00908915100090891510202610000004850000002... [57B]</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="outputs">
+    <div class="container">
+      <div class="sec-head">
+        <span class="badge">BUILT FOR MALAYSIAN PORTAL VALIDATORS</span>
+        <h2>Every Cryptic Upload Rejection—Prevented Automatically</h2>
+        <p>Microsoft Excel silently breaks government text schemas. Our statutory engine repairs every cell before compiling byte-accurate portal files.</p>
+      </div>
+      <div class="grid-4">
+        <div class="card">
+          <span class="badge">KWSP ACT 2025/2026</span>
+          <h3>2% Foreign Worker EPF + Third Schedule</h3>
+          <p>Automatically detects non-citizen staff and applies the mandatory 2% Employer + 2% Employee KWSP rate while calculating standard 11%/12%/13% brackets for Malaysians.</p>
+        </div>
+        <div class="card">
+          <span class="badge">PERKESO RM 6,000 CEILING</span>
+          <h3>Cat 1 vs Age 60+ Cat 2 Routing</h3>
+          <p>Reads birth year from 12-digit MyKad to switch staff aged 60+ and foreign workers to Injury-Only Category 2 and zeroes out EIS (<code>000000</code>) automatically.</p>
+        </div>
+        <div class="card">
+          <span class="badge">EXCEL ZERO RECOVERY</span>
+          <h3>Restores Stripped Leading Zeros</h3>
+          <p>Staff born in 2000–2009 have NRICs starting with <code>00–09</code> that Excel truncates to 10–11 digits. We validate <code>YYMMDD</code> dates and restore exact 12-digit MyKads.</p>
+        </div>
+        <div class="card">
+          <span class="badge">CP39 &amp; BANK BIC</span>
+          <h3>57/136-Byte CP39 + DuitNow Net Pay</h3>
+          <p>Strips <code>E</code> and <code>IG</code> prefixes into exact numeric columns for LHDN e-Data PCB, and maps Maybank, CIMB, Public Bank &amp; GXBank names to 8-letter SWIFT BICs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="industries" style="background:#fff;">
+    <div class="container">
+      <div class="sec-head">
+        <span class="badge">DESIGNED FOR MALAYSIAN EMPLOYERS</span>
+        <h2>Built for Teams Who Already Calculate Pay in Excel or Sheets</h2>
+        <p>Keep your flexible Excel allowance, commission, and overtime formulas—just use MyPayroll Statutory Doctor for the final 15-second government file export.</p>
+      </div>
+      <div class="grid-4">
+        <div class="card">
+          <h3>Cafes, F&amp;B &amp; Retail Outlets</h3>
+          <p>Mix of local part-timers, post-2000 Gen-Z MyKads, and foreign kitchen/floor staff requiring 2% EPF + SOCSO Category 2.</p>
+        </div>
+        <div class="card">
+          <h3>Shopee &amp; Warehouse Teams</h3>
+          <p>Variable monthly packing commissions and overtime already computed in spreadsheets—export all 4 statutory files in one click.</p>
+        </div>
+        <div class="card">
+          <h3>Clinics, Agencies &amp; SMEs</h3>
+          <p>2 to 50 salaried staff where paying RM 150–RM 600 every single month for bloated HR leave-tracking software makes zero financial sense.</p>
+        </div>
+        <div class="card">
+          <h3>Freelance Bookkeepers &amp; Secs</h3>
+          <p>One RM 39 license covers <strong>unlimited employer SSM / KWSP / E-numbers</strong>—file monthly payroll for 20+ client companies at zero extra cost.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="comparison">
+    <div class="container">
+      <div class="sec-head">
+        <span class="badge">COST &amp; PRIVACY COMPARISON</span>
+        <h2>Why Pay RM 1,500+/Year Just to Download 4 Text Files?</h2>
+      </div>
+      <div class="comp-wrap">
+        <table class="comp">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Manual Portal Key-In</th>
+              <th>Monthly Cloud HR SaaS</th>
+              <th class="hl-col">MyPayroll Statutory Doctor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>10-Employee Annual Cost</strong></td>
+              <td>RM 0 (3+ hrs/month typing)</td>
+              <td>RM 960 – RM 2,160 / year</td>
+              <td class="hl-col">RM 39 Once (RM 0/month forever)</td>
+            </tr>
+            <tr>
+              <td><strong>Multiple Client Companies</strong></td>
+              <td>Log in &amp; re-type each</td>
+              <td>Charged per company + per head</td>
+              <td class="hl-col">Unlimited Companies Included</td>
+            </tr>
+            <tr>
+              <td><strong>2% Foreign Worker EPF + RM 6k SOCSO</strong></td>
+              <td>Manual lookup tables</td>
+              <td>Included</td>
+              <td class="hl-col">Automatic Audit &amp; Calculation</td>
+            </tr>
+            <tr>
+              <td><strong>Employee Salary Privacy (PDPA)</strong></td>
+              <td>Portal only</td>
+              <td>Stored permanently on vendor cloud</td>
+              <td class="hl-col">Zero Database Storage (Stateless RAM)</td>
+            </tr>
+            <tr>
+              <td><strong>1-Click All 4 Exports</strong></td>
+              <td>Multiple portals manual</td>
+              <td>Separate reports</td>
+              <td class="hl-col">KWSP + PERKESO + CP39 + Bank</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" style="background:#fff;">
+    <div class="container">
+      <div class="sec-head">
+        <span class="badge">TRANSPARENT ONE-TIME PRICING</span>
+        <h2>Pay Once. File Every Month Forever.</h2>
+        <p>Instant license delivery 24/7 via Visa, Mastercard, Apple Pay, Google Pay, or Wise Transfer.</p>
+      </div>
+
+      <div class="price-grid">
+        <div class="price-card">
+          <div>
+            <span class="badge">FREE PORTAL TEST</span>
+            <div class="price-amt">RM 0</div>
+            <div style="font-size:13px;color:var(--ink-muted);">Test on live portals before buying</div>
+            <ul class="price-list">
+              <li>✓ Full statutory audit &amp; error diff for unlimited rows</li>
+              <li>✓ Export up to <strong>2 employees</strong> across all 4 file formats</li>
+              <li>✓ Verify upload directly on KWSP i-Akaun &amp; PERKESO ASSIST</li>
+            </ul>
+          </div>
+          <a href="./app.html" class="btn btn-outline">Test Free in Browser</a>
+        </div>
+
+        <div class="price-card featured">
+          <div>
+            <span class="badge" style="background:var(--emerald-soft);color:var(--emerald-dark);">MOST POPULAR · LIFETIME</span>
+            <div class="price-amt">RM 39 <span style="font-size:14px;font-weight:600;color:var(--ink-muted);">/ USD 9.99 once</span></div>
+            <div style="font-size:13px;color:var(--ink-muted);">One-time payment · Zero recurring fees</div>
+            <ul class="price-list">
+              <li>✓ <strong>Unlimited employees</strong> per monthly batch</li>
+              <li>✓ <strong>Unlimited employer companies</strong> (KWSP / PERKESO / E-No.)</li>
+              <li>✓ All 4 exports: KWSP CSV, PERKESO 244B TXT, CP39 TXT &amp; Bulk Salary CSV</li>
+              <li>✓ Instant 24/7 License Key via Card / Apple Pay / Wise</li>
+            </ul>
+          </div>
+          <a href="./app.html?unlock=1" class="btn btn-emerald">Unlock MyPayroll Lifetime →</a>
+        </div>
+
+        <div class="price-card" style="border-color:#0b1f3a;">
+          <div>
+            <span class="badge" style="background:#0b1f3a;color:#fff;">ALL-IN-ONE SME BUNDLE (SAVE 22%)</span>
+            <div class="price-amt">RM 55 <span style="font-size:14px;font-weight:600;color:var(--ink-muted);">/ USD 14.99 once</span></div>
+            <div style="font-size:13px;color:var(--ink-muted);">1 Master Key unlocks BOTH Malaysian SME tools</div>
+            <ul class="price-list">
+              <li>✓ <strong>MyPayroll Statutory Doctor</strong> (Unlimited KWSP, PERKESO, CP39 &amp; Bank)</li>
+              <li>✓ <strong>MyInvois Batch Doctor</strong> (Unlimited Shopee/POS → LHDN 11-Sheet e-Invoice)</li>
+              <li>✓ Ideal for Malaysian SME owners, HR admins &amp; freelance bookkeepers</li>
+            </ul>
+          </div>
+          <a href="./app.html?checkout=MYBUND" class="btn btn-navy">Get Both Tools (SME Bundle) →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <div class="sec-head">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <details class="faq">
+        <summary>Are my employees' NRIC numbers and salaries stored on any server?</summary>
+        <p>Never. Cell auditing and statutory calculations run locally inside your browser, and final portal file compilation executes in stateless RAM with zero database persistence—keeping your payroll 100% PDPA-safe.</p>
+      </details>
+      <details class="faq">
+        <summary>Can I enter my own exact EPF, SOCSO, EIS, or PCB numbers from Excel?</summary>
+        <p>Yes! If your CSV already has columns for <code>EPF_Employer</code>, <code>EPF_Employee</code>, <code>SOCSO_Employer</code>, <code>PCB</code>, etc., we preserve your exact figures (while still protecting foreign worker &amp; age 60+ exemption rules). Leave them blank if you want us to auto-calculate statutory rates for you.</p>
+      </details>
+      <details class="faq">
+        <summary>Does one license work if I manage payroll for 5 different Sdn Bhd / Enterprise entities?</summary>
+        <p>Yes. Unlike cloud payroll subscriptions that bill per company and per headcount, your Lifetime License has zero restriction on Employer SSM, KWSP, PERKESO, or LHDN E-numbers.</p>
+      </details>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+      <div>
+        <strong style="color:#fff;">Hyperfetch Tools — Malaysia SME Compliance Suite</strong>
+        <div style="margin-top:6px;">Independent statutory formatting utility; not affiliated with KWSP, PERKESO, or LHDN.</div>
+      </div>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:center;">
+        <a href="./app.html">Converter Studio</a>
+        <a href="./foreign-worker-epf-perkeso-guide.html">2026 EPF/PERKESO Guide</a>
+        <a href="https://hyperfetch-tools.github.io/myinvois/">MyInvois e-Invoice Converter</a>
+        <a href="./sitemap.xml">Sitemap</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
