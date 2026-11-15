@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en-MY">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://*.googleusercontent.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buy.polar.sh https://polar.sh;" />
+  <title>Converter Studio — MyPayroll Statutory Doctor | Hyperfetch Tools</title>
+  <meta name="description" content="Convert Malaysian SME salary CSV/Excel sheets into KWSP i-Akaun CSV, PERKESO ASSIST 244-byte TXT, LHDN CP39 TXT & DuitNow Bulk Salary CSV." />
+  <link rel="canonical" href="https://hyperfetch-tools.github.io/mypayroll/app.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-subtle: #f1f5f9;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --navy: #0b1f3a;
+      --navy-hover: #152e52;
+      --ink: #0f172a;
+      --ink-secondary: #475569;
+      --ink-muted: #64748b;
+      --emerald: #059669;
+      --emerald-dark: #047857;
+      --emerald-bg: #ecfdf5;
+      --emerald-border: #a7f3d0;
+      --crimson: #b91c1c;
+      --crimson-bg: #fef2f2;
+      --amber: #b45309;
+      --amber-bg: #fffbeb;
+      --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: "IBM Plex Mono", monospace;
+      --radius: 10px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: var(--font-sans); background: var(--bg); color: var(--ink); font-size: 14px; line-height: 1.5; }
+    .mono { font-family: var(--font-mono); }
+
+    .topbar {
+      background: var(--navy);
+      color: #fff;
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .topbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brand-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .back-pill {
+      color: #cbd5e1; text-decoration: none; font-size: 12.5px; font-weight: 600;
+      padding: 5px 10px; border-radius: 6px; background: rgba(255,255,255,0.08);
+    }
+    .back-pill:hover { color: #fff; background: rgba(255,255,255,0.14); }
+    .license-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 700;
+      background: rgba(255,255,255,0.1); color: #f8fafc; border: 1px solid rgba(255,255,255,0.18);
+      cursor: pointer;
+    }
+    .license-pill.unlocked { background: var(--emerald); border-color: var(--emerald); color: #fff; }
+
+    .workspace { max-width: 1200px; margin: 22px auto 64px; padding: 0 20px; }
+    .ledger-frame {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 18px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(15,23,42,0.04);
+    }
+    .frame-bar {
+      padding: 12px 18px;
+      background: var(--surface-subtle);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .frame-step { display: flex; align-items: center; gap: 9px; font-weight: 700; color: var(--navy); }
+    .step-badge {
+      font-family: var(--font-mono); font-size: 11px; padding: 2px 7px;
+      border-radius: 5px; background: var(--navy); color: #fff;
+    }
+
+    .profile-grid {
+      padding: 16px 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 12px;
+    }
+    .field-label { display: block; font-size: 11.5px; font-weight: 700; color: var(--ink-secondary); margin-bottom: 4px; }
+    .text-input {
+      width: 100%; padding: 8px 10px; border: 1px solid var(--border-strong);
+      border-radius: 7px; font-family: inherit; font-size: 13px; color: var(--ink); background: #fff;
+    }
+    .mono-input { font-family: var(--font-mono); font-size: 12.5px; }
+
+    .intake-body { padding: 18px; }
+    .drop-surface {
+      border: 2px dashed var(--border-strong);
+      border-radius: 10px;
+      padding: 28px 20px;
+      text-align: center;
+      background: #fcfdff;
+      transition: 0.15s;
+    }
+    .drop-surface.dragover { border-color: var(--emerald); background: var(--emerald-bg); }
+    .drop-title { font-weight: 700; font-size: 15px; color: var(--navy); margin: 8px 0 4px; }
+    .drop-hint { font-size: 12.5px; color: var(--ink-muted); margin: 0 0 14px; }
+    .action-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+      padding: 9px 15px; border-radius: 8px; font-weight: 700; font-size: 13px;
+      cursor: pointer; border: 1px solid transparent; font-family: inherit; text-decoration: none;
+    }
+    .btn-emerald { background: var(--emerald); color: #fff; }
+    .btn-emerald:hover { background: var(--emerald-dark); }
+    .btn-navy { background: var(--navy); color: #fff; }
+    .btn-navy:hover { background: var(--navy-hover); }
+    .btn-outline { background: #fff; color: var(--navy); border-color: var(--border-strong); }
+    .btn-outline:hover { background: var(--surface-subtle); }
+    .btn-ghost { background: transparent; color: var(--ink-secondary); padding: 5px 10px; }
+
+    .raw-editor-drawer { display: none; margin-top: 14px; }
+    .raw-editor-drawer.open { display: block; }
+    textarea {
+      width: 100%; border: 1px solid var(--border-strong); border-radius: 8px;
+      padding: 10px; font-family: var(--font-mono); font-size: 12px;
+    }
+
+    .metrics-ribbon {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      border-bottom: 1px solid var(--border);
+    }
+    .metric-cell { padding: 13px 16px; border-right: 1px solid var(--border); }
+    .metric-val { font-family: var(--font-mono); font-size: 20px; font-weight: 700; color: var(--navy); }
+    .metric-val.fix { color: var(--emerald-dark); }
+    .metric-lbl { font-size: 12px; font-weight: 700; color: var(--ink); }
+    .metric-sub { font-size: 11px; color: var(--ink-muted); }
+
+    .ledger-toolbar {
+      padding: 10px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+    }
+    .segmented {
+      display: inline-flex; background: var(--surface-subtle); padding: 3px;
+      border-radius: 8px; border: 1px solid var(--border);
+    }
+    .seg-btn {
+      border: 0; background: transparent; padding: 6px 12px; border-radius: 6px;
+      font-size: 12px; font-weight: 700; color: var(--ink-secondary); cursor: pointer;
+    }
+    .seg-btn.active { background: #fff; color: var(--navy); box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+
+    .table-scroll { overflow-x: auto; }
+    table.ledger-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    table.ledger-table th, table.ledger-table td {
+      padding: 9px 12px; border-bottom: 1px solid var(--border); text-align: left; white-space: nowrap;
+    }
+    table.ledger-table th { background: #f8fafc; font-size: 11px; text-transform: uppercase; color: var(--ink-muted); }
+    .num { text-align: right !important; }
+    .diff-del { background: var(--crimson-bg); color: var(--crimson); padding: 1px 5px; border-radius: 4px; text-decoration: line-through; font-family: var(--font-mono); font-size: 11.5px; }
+    .diff-ins { background: var(--emerald-bg); color: var(--emerald-dark); padding: 1px 5px; border-radius: 4px; font-weight: 600; font-family: var(--font-mono); font-size: 11.5px; }
+    .stamp { font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 999px; }
+    .stamp-local { background: var(--emerald-bg); color: var(--emerald-dark); }
+    .stamp-foreign { background: var(--amber-bg); color: var(--amber); }
+
+    .code-inspector {
+      display: none; margin: 0; padding: 16px 18px; background: #061224;
+      color: #a7f3d0; font-family: var(--font-mono); font-size: 11.5px; overflow-x: auto; line-height: 1.6;
+    }
+
+    .export-footer {
+      padding: 16px 18px;
+      background: #f8fafc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .export-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* Checkout Drawer */
+    .drawer-backdrop {
+      display: none; position: fixed; inset: 0; background: rgba(11,31,58,0.52);
+      z-index: 100; justify-content: flex-end;
+    }
+    .drawer-backdrop.open { display: flex; }
+    .checkout-drawer {
+      width: 100%; max-width: 455px; background: #fff; height: 100%;
+      overflow-y: auto; display: flex; flex-direction: column;
+      box-shadow: -12px 0 36px rgba(11,31,58,0.2);
+    }
+    .drawer-head {
+      padding: 18px 20px; border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .drawer-body { padding: 18px 20px 32px; }
+    .price-summary-card {
+      background: var(--surface-subtle); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px; margin-bottom: 14px;
+    }
+    .kv-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; font-size: 13px; }
+    .kv-key { color: var(--ink-muted); }
+    .kv-val { font-weight: 700; color: var(--navy); font-family: var(--font-mono); }
+    .return-banner {
+      display: none; padding: 10px 12px; border-radius: 8px; margin-bottom: 12px;
+      background: var(--emerald-bg); border: 1px solid var(--emerald-border);
+      color: var(--emerald-dark); font-size: 12.5px; font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-row">
+        <a href="./index.html" class="back-pill">← Overview</a>
+        <strong style="font-size:15px;">MyPayroll Statutory Doctor</strong>
+        <span class="mono" style="font-size:11px;color:#6ee7b7;background:rgba(5,150,105,0.22);padding:3px 8px;border-radius:5px;">KWSP · PERKESO 244B · CP39 · Bulk Salary</span>
+        <a href="https://hyperfetch-tools.github.io/myinvois/" class="back-pill" title="Need Shopee/POS e-Invoicing?">Need e-Invoice? MyInvois Doctor →</a>
+      </div>
+      <button type="button" id="licenseStatusBadge" class="license-pill" onclick="openUnlockDrawer('MYPAYROL')">
+        <span id="licenseBadgeText">Free Try (2 Staff) · Unlock Lifetime RM 39</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <!-- Step 01: Employer Statutory Profile -->
+    <section class="ledger-frame" aria-label="Employer Statutory Identifiers">
+      <div class="frame-bar">
+        <div class="frame-step">
+          <span class="step-badge">STEP 01</span>
+          <span>Employer Statutory Profile (Unlimited Companies Supported)</span>
+        </div>
+        <span id="periodBadge" class="mono" style="font-size:11.5px;color:var(--emerald-dark);font-weight:600;">Salary: 10/2026 → KWSP Contribution: 11/2026 (+1 Month Rule)</span>
+      </div>
+      <div class="profile-grid">
+        <div>
+          <label class="field-label" for="empCompany">Employer / Company Name</label>
+          <input id="empCompany" class="text-input" value="HYPERFETCH DEMO SDN BHD" />
+        </div>
+        <div>
+          <label class="field-label" for="empSsm">SSM / MyCoID No.</label>
+          <input id="empSsm" class="text-input mono-input" value="202401012345" />
+        </div>
+        <div>
+          <label class="field-label" for="empKwsp">KWSP Employer No.</label>
+          <input id="empKwsp" class="text-input mono-input" value="012345678" />
+        </div>
+        <div>
+          <label class="field-label" for="empPerkeso">PERKESO Code (E...)</label>
+          <input id="empPerkeso" class="text-input mono-input" value="E1100012345Z" />
+        </div>
+        <div>
+          <label class="field-label" for="empLhdn">LHDN Employer E-No.</label>
+          <input id="empLhdn" class="text-input mono-input" value="E9089151000" />
+        </div>
+        <div>
+          <label class="field-label" for="empMonth">Salary / Wage Month</label>
+          <input id="empMonth" type="month" class="text-input mono-input" value="2026-10" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 02: Payroll CSV / TSV Dropzone -->
+    <section class="ledger-frame" aria-label="Upload Salary Sheet">
+      <div class="frame-bar">
+        <div class="frame-step">
+          <span class="step-badge">STEP 02</span>
+          <span>Import Monthly Salary Sheet (.CSV / .TSV from Excel or Google Sheets)</span>
+        </div>
+        <button type="button" class="btn btn-ghost" onclick="toggleRawEditor()">Paste / Edit Raw CSV Rows</button>
+      </div>
+      <div class="intake-body">
+        <input type="file" id="csvFileInput" accept=".csv,.tsv,.txt" hidden />
+        <div id="dropSurface" class="drop-surface">
+          <p class="drop-title" id="loadedFileLabel">Drag &amp; drop your monthly Salary CSV / TSV export here</p>
+          <p class="drop-hint">Accepts simple columns (Name, NRIC/Passport, Country, Gross Wages, Bank, Bank Account, Tax TIN, PCB) — statutory EPF/SOCSO/EIS auto-calculated if blank.</p>
+          <div class="action-row">
+            <button type="button" class="btn btn-emerald" onclick="document.getElementById('csvFileInput').click()">Select Salary CSV File</button>
+            <button type="button" class="btn btn-outline" onclick="loadSamplePayroll()">Try Interactive 6-Employee Demo</button>
+          </div>
+        </div>
+        <div id="rawEditorDrawer" class="raw-editor-drawer">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <span class="mono" style="font-size:11px;color:var(--ink-muted);">RAW SALARY CSV EDITOR</span>
+            <button type="button" class="btn btn-outline" style="padding:4px 10px;font-size:12px;" onclick="runAudit()">Re-Calculate Batch</button>
+          </div>
+          <textarea id="rawCsvBox" rows="7" placeholder="Staff ID,Name,NRIC,Passport,Country,KWSP No,Wages,Tax TIN,PCB,Bank,Bank Account"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 03: Statutory Diff & 4 Portal Exports -->
+    <section id="resultsPanel" class="ledger-frame" style="display:none;" aria-label="Statutory Audit Results">
+      <div class="frame-bar">
+        <div class="frame-step">
+          <span class="step-badge">STEP 03</span>
+          <span>Statutory Audit &amp; 4-Portal Export Studio</span>
+        </div>
+        <span id="totalsSummary" class="mono" style="font-size:11.5px;color:var(--navy);font-weight:600;"></span>
+      </div>
+
+      <div class="metrics-ribbon" id="diagStats"></div>
+
+      <div class="ledger-toolbar">
+        <div class="segmented" role="tablist">
+          <button type="button" class="seg-btn active" onclick="setRowFilter('ALL', this)">All Staff</button>
+          <button type="button" class="seg-btn" onclick="setRowFilter('FOREIGN_SENIOR', this)">Foreign (2% EPF) &amp; 60+ Cat 2</button>
+          <button type="button" class="seg-btn" onclick="setRowFilter('PCB', this)">With LHDN PCB</button>
+        </div>
+        <div class="segmented" role="tablist">
+          <button type="button" class="seg-btn active" onclick="setInspectorView('TABLE', this)">Statutory Ledger View</button>
+          <button type="button" class="seg-btn" onclick="setInspectorView('BYTES', this)">Fixed-Width Byte Preview (.TXT)</button>
+        </div>
+      </div>
+
+      <div id="ledgerTableWrap" class="table-scroll">
+        <table class="ledger-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Employee</th>
+              <th>MyKad / Passport</th>
+              <th class="num">Gross (MYR)</th>
+              <th>KWSP (Er / Ee)</th>
+              <th>PERKESO + EIS</th>
+              <th class="num">LHDN PCB</th>
+              <th>Bank BIC</th>
+              <th class="num">Net Pay (MYR)</th>
+            </tr>
+          </thead>
+          <tbody id="previewTableBody"></tbody>
+        </table>
+      </div>
+
+      <pre id="byteInspectorBox" class="code-inspector"></pre>
+
+      <div class="export-footer">
+        <div>
+          <div id="exportSummaryText" style="font-weight:700;color:var(--navy);font-size:13px;"></div>
+          <div style="font-size:11.5px;color:var(--ink-muted);">Zero salary persistence: portal files compile in stateless RAM and download directly.</div>
+        </div>
+        <div class="export-btns">
+          <button type="button" id="btnFreeSample2" class="btn btn-outline" style="display:none;" onclick="exportPortalFile('KWSP_CSV', true)">
+            Free 2-Staff Test (.csv)
+          </button>
+          <button type="button" class="btn btn-emerald" onclick="exportPortalFile('KWSP_CSV', false)">
+            1. KWSP i-Akaun (.csv)
+          </button>
+          <button type="button" class="btn btn-navy" onclick="exportPortalFile('PERKESO_TXT', false)">
+            2. PERKESO ASSIST (.txt)
+          </button>
+          <button type="button" class="btn btn-navy" onclick="exportPortalFile('PCB_CP39_TXT', false)">
+            3. LHDN CP39 (.txt)
+          </button>
+          <button type="button" class="btn btn-outline" onclick="exportPortalFile('BANK_BULK_CSV', false)">
+            4. Bank Bulk Salary (.csv)
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Dual-Rail Checkout & Bundle Drawer -->
+  <div class="drawer-backdrop" id="unlockDrawer" onclick="if(event.target===this)closeUnlockDrawer()">
+    <aside class="checkout-drawer" aria-labelledby="drawerTitle">
+      <div class="drawer-head">
+        <div>
+          <div class="mono" style="font-size:11px;font-weight:700;color:var(--emerald-dark);">ONE-TIME LIFETIME LICENSE</div>
+          <h2 id="drawerTitle" style="margin:4px 0 0;font-size:19px;color:var(--navy);">Unlock Unlimited Monthly Payroll</h2>
+        </div>
+        <button type="button" class="btn btn-ghost" onclick="closeUnlockDrawer()">✕</button>
+      </div>
+      <div class="drawer-body">
+        <div id="polarReturnBanner" class="return-banner">
+          <span id="polarReturnStatus">Verifying card payment...</span>
+        </div>
+
+        <!-- Tier Selector: Single vs SME Bundle -->
+        <div style="margin-bottom:12px;">
+          <label class="field-label">1. Choose License Tier</label>
+          <div class="segmented" style="width:100%;display:grid;grid-template-columns:1fr 1.15fr;">
+            <button type="button" id="tierBtnSingle" class="seg-btn active" onclick="selectTier('MYPAYROL')">MyPayroll Only (RM 39)</button>
+            <button type="button" id="tierBtnBundle" class="seg-btn" onclick="selectTier('MYBUND')">SME Bundle: +MyInvois (RM 55)</button>
+          </div>
+        </div>
+
+        <!-- Payment Rail Selector -->
+        <div style="margin-bottom:14px;">
+          <label class="field-label">2. Select Payment Method</label>
+          <div class="segmented" style="width:100%;display:grid;grid-template-columns:1.25fr 1fr;">
+            <button type="button" id="railBtnCard" class="seg-btn active" onclick="selectPaymentRail('CARD')">Card / Apple &amp; Google Pay</button>
+            <button type="button" id="railBtnWise" class="seg-btn" onclick="selectPaymentRail('WISE')">Wise Transfer (MYR)</button>
+          </div>
+        </div>
+
+        <!-- Card Section -->
+        <div id="cardPaySection">
+          <div class="price-summary-card">
+            <div class="kv-row">
+              <span class="kv-key">Selected Plan</span>
+              <span class="kv-val" id="cardProductLabel" style="font-family:var(--font-sans);">MyPayroll Statutory Doctor · Lifetime</span>
+            </div>
+            <div class="kv-row">
+              <span class="kv-key">One-Time Total</span>
+              <span class="kv-val" id="cardPriceLabel" style="color:var(--emerald-dark);font-size:15px;">USD 9.99 (~RM 39 One-time)</span>
+            </div>
+            <div class="kv-row">
+              <span class="kv-key">Coverage</span>
+              <span class="kv-val" id="cardCoverageLabel" style="font-family:var(--font-sans);font-size:12px;">Unlimited staff &amp; unlimited companies</span>
+            </div>
+            <a id="polarCardBuyLink" href="https://buy.polar.sh/polar_cl_YlpL3oaZd36nGEWPvJbSyGZ143JKFgFh5z9Q81nmmTJ" class="btn btn-emerald" style="width:100%;margin-top:12px;padding:12px;">
+              Pay Securely by Card / Apple Pay →
+            </a>
+            <div style="font-size:11px;color:var(--ink-muted);text-align:center;margin-top:8px;">
+              Processed by Polar.sh (Hyperfetch Tools) · Instant auto-unlock on return + email receipt.
+            </div>
+          </div>
+        </div>
+
+        <!-- Wise Section -->
+        <div id="wisePaySection" style="display:none;">
+          <div class="price-summary-card">
+            <label class="field-label" for="buyerEmailInput">Receipt Email (Optional — auto-emails your key)</label>
+            <input id="buyerEmailInput" type="email" class="text-input" placeholder="accounts@yourcompany.com.my" style="margin-bottom:10px;" onchange="startAutoOrder()" />
+            <div id="liveOrderBox">
+              <div class="kv-row">
+                <span class="kv-key">Wise Recipient Email</span>
+                <span class="kv-val">jycheah7@gmail.com <button type="button" class="btn btn-outline" style="padding:2px 7px;font-size:11px;" onclick="copyText('jycheah7@gmail.com', this)">Copy</button></span>
+              </div>
+              <div class="kv-row">
+                <span class="kv-key">Exact Amount to Send</span>
+                <span class="kv-val"><span id="exactPayAmount" data-raw="39.01" style="color:var(--emerald-dark);">MYR 39.01</span> <button type="button" class="btn btn-outline" style="padding:2px 7px;font-size:11px;" onclick="copyExactAmount(this)">Copy</button></span>
+              </div>
+              <div class="kv-row">
+                <span class="kv-key">Transfer Reference</span>
+                <span class="kv-val"><span id="exactOrderRef">ORD-...</span> <button type="button" class="btn btn-outline" style="padding:2px 7px;font-size:11px;" onclick="copyOrderRef(this)">Copy</button></span>
+              </div>
+              <div id="orderPollStatus" class="mono" style="font-size:11.5px;color:var(--emerald-dark);margin-top:8px;"></div>
+              <button type="button" class="btn btn-outline" style="width:100%;margin-top:8px;" onclick="verifyNowManualTrigger()">I've Sent the Transfer — Check Now</button>
+            </div>
+          </div>
+        </div>
+
+        <hr style="border:0;border-top:1px solid var(--border);margin:16px 0;" />
+        <label class="field-label" for="licenseInput">Already have a MyPayroll or SME Bundle Key?</label>
+        <div style="display:flex;gap:8px;">
+          <input id="licenseInput" class="text-input mono-input" placeholder="ZYK-MYPAYR-XXXXXXXX-XXXXXXXXXX" />
+          <button type="button" class="btn btn-navy" onclick="activateManualKey()">Activate</button>
+        </div>
+        <div id="keyMsg" class="mono" style="font-size:12px;margin-top:8px;"></div>
+      </div>
+    </aside>
+  </div>
+
+  <script type="module">
+    import {
+      parseCsv,
+      diagnoseAndRepairPayroll,
+      buildFixedWidthPreviewSnippet,
+      getContributionPeriod,
+    } from './mypayroll-client.mjs';
+
+    const CLOUD_AUTOPAY_EXEC_URL = 'https://script.google.com/macros/s/AKfycbyxApiw79oG_JHvooqtsc3ctxSwqXuzPqVUM64T2Ifj9aYK2kxRVwq-ABUgO0cOBK6y/exec';
+    const POLAR_CHECKOUT_LINKS = {
+      MYPAYROL: 'https://buy.polar.sh/polar_cl_YlpL3oaZd36nGEWPvJbSyGZ143JKFgFh5z9Q81nmmTJ',
+      MYBUND: 'https://buy.polar.sh/polar_cl_x8tG4fFh0TgXrv1hcu4bulphbGHeBEQbDTSbo4Kp04t',
+    };
+
+    const MAX_CSV_BYTES = 10 * 1024 * 1024;
+    const MAX_BATCH_ROWS = 5000;
+
+    let currentAudit = null;
+    let activeRowFilter = 'ALL';
+    let activeCheckoutProduct = 'MYPAYROL';
+    let activePaymentRail = 'CARD';
+    let activeOrderId = null;
+    let pollTimer = null;
+    let isUnlocked = Boolean(localStorage.getItem('zyk_mypayroll_key'));
+
+    function escHtml(s) {
+      return String(s ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function refreshPeriodBadge() {
+      const p = getContributionPeriod(document.getElementById('empMonth').value);
+      document.getElementById('periodBadge').textContent =
+        `Salary: ${String(p.salaryMonth).padStart(2, '0')}/${p.salaryYear} → KWSP Contribution: ${p.kwspMMYYYY} (+1 Month Rule)`;
+    }
+    refreshPeriodBadge();
+
+    function refreshUnlockUi() {
+      const btn = document.getElementById('licenseStatusBadge');
+      const txt = document.getElementById('licenseBadgeText');
+      const saved = localStorage.getItem('zyk_mypayroll_key');
+      if (saved) {
+        isUnlocked = true;
+        btn.classList.add('unlocked');
+        txt.textContent = `Lifetime Unlocked · ${saved.slice(0, 14)}…`;
+      } else {
+        isUnlocked = false;
+        btn.classList.remove('unlocked');
+        txt.textContent = 'Free Try (2 Staff) · Unlock Lifetime RM 39';
+      }
+    }
+    refreshUnlockUi();
+
+    ['empCompany', 'empSsm', 'empKwsp', 'empPerkeso', 'empLhdn', 'empMonth'].forEach((id) => {
+      document.getElementById(id).addEventListener('change', () => {
+        refreshPeriodBadge();
+        if (document.getElementById('rawCsvBox').value.trim()) window.runAudit();
+      });
+    });
+
+    async function loadCsvFileSafely(file) {
+      if (!file) return;
+      const lbl = document.getElementById('loadedFileLabel');
+      if (file.size > MAX_CSV_BYTES) {
+        lbl.textContent = `File rejected (${(file.size / (1024 * 1024)).toFixed(1)} MB): Maximum upload size is 10 MB.`;
+        return;
+      }
+      if (!/\.(csv|tsv|txt)$/i.test(file.name || '') && file.type && !/^text\/|csv|excel/i.test(file.type)) {
+        lbl.textContent = `Unsupported file "${file.name}": Please select a .csv, .tsv, or .txt salary sheet.`;
+        return;
+      }
+      lbl.textContent = `Loaded salary sheet: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+      document.getElementById('rawCsvBox').value = await file.text();
+      window.runAudit();
+    }
+
+    const dropSurface = document.getElementById('dropSurface');
+    dropSurface.addEventListener('dragover', (e) => { e.preventDefault(); dropSurface.classList.add('dragover'); });
+    dropSurface.addEventListener('dragleave', () => dropSurface.classList.remove('dragover'));
+    dropSurface.addEventListener('drop', async (e) => {
+      e.preventDefault();
+      dropSurface.classList.remove('dragover');
+      await loadCsvFileSafely(e.dataTransfer?.files?.[0]);
+    });
+    document.getElementById('csvFileInput').addEventListener('change', async (e) => {
+      await loadCsvFileSafely(e.target.files[0]);
+    });
+
+    window.toggleRawEditor = () => document.getElementById('rawEditorDrawer').classList.toggle('open');
+
+    window.loadSamplePayroll = () => {
+      const sample = [
+        'Staff ID,Name,NRIC,Passport,Country,KWSP No,Wages,Tax TIN,PCB,Bank,Bank Account',
+        'EMP001,Ahmad Faiz bin Razak,940812-14-5521,,MY,18442910,4800.00,IG1049281720,115.00,Maybank,162106882910',
+        'EMP002,Nurul Izzah binti Halim,20415145822,,MY,7291820,3200.00,,,CIMB,7048291029',
+        'EMP003,Tan WeiMing,880322-10-5119,,MY,15928371,7200.00,IG2039182710,420.50,Public Bank,3192837465',
+        'EMP004,Md Jahangir Alam,,A09482711,BD,22910482,2100.00,,,Maybank,114082910382',
+        'EMP005,Lim Siew Lan,630510-08-4220,,MY,08192834,3600.00,,,Hong Leong,29104829102',
+        'EMP006,Siti Sarah binti Omar,010908106642,,MY,21094821,2850.00,,,GXBank,8810293847',
+      ].join('\n');
+      document.getElementById('loadedFileLabel').textContent = 'Demo Loaded: 6 Malaysian + Foreign + Senior Staff (Drop your own salary CSV anytime)';
+      document.getElementById('rawCsvBox').value = sample;
+      window.runAudit();
+      document.getElementById('resultsPanel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    };
+
+    function renderTableRows() {
+      if (!currentAudit) return;
+      let rows = currentAudit.employees;
+      if (activeRowFilter === 'FOREIGN_SENIOR') rows = rows.filter((r) => r.isForeign || r.perkesoCategory === 'CAT2');
+      else if (activeRowFilter === 'PCB') rows = rows.filter((r) => r.pcbMtd > 0 || r.cp38Amt > 0);
+
+      const tbody = document.getElementById('previewTableBody');
+      if (!rows.length) {
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;color:var(--ink-muted);padding:20px;">No employees match this filter.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = rows.map((r) => {
+        const repSet = new Set((r.repairs || []).map((x) => x.field));
+        const finalId = r.isForeign ? `${r.passport} (${r.countryCode})` : r.nric;
+        const idCell = repSet.has('nric')
+          ? `<span class="diff-del">${escHtml(r.rawOriginal.id)}</span> → <span class="diff-ins">${escHtml(finalId)}</span>`
+          : `<span class="mono">${escHtml(finalId)}</span>`;
+
+        const kwspTag = r.isForeign ? ' (2%)' : (r.age >= 60 ? ' (60+)' : '');
+        const kwspCell = `<span class="diff-ins">RM ${r.epfEr.toFixed(0)} / RM ${r.epfEe.toFixed(0)}${kwspTag}</span>`;
+        const perkesoCell = r.perkesoCategory === 'CAT2'
+          ? `<span class="stamp stamp-foreign">CAT 2 · RM ${r.socsoEr.toFixed(2)} · EIS 0</span>`
+          : `<span class="mono">RM ${r.socsoEr.toFixed(2)}/${r.socsoEe.toFixed(2)} + EIS ${r.eisEe.toFixed(2)}</span>`;
+
+        const badge = r.isForeign
+          ? `<span class="stamp stamp-foreign">FOREIGN 2%</span>`
+          : (r.age >= 60 ? `<span class="stamp stamp-foreign">60+ SENIOR</span>` : `<span class="stamp stamp-local">LOCAL</span>`);
+
+        return `<tr>
+          <td class="mono">${String(r.rowIndex).padStart(2, '0')}</td>
+          <td><strong>${escHtml(r.name)}</strong> ${badge}</td>
+          <td>${idCell}</td>
+          <td class="num mono">${r.wages.toFixed(2)}</td>
+          <td>${kwspCell}</td>
+          <td>${perkesoCell}</td>
+          <td class="num mono">${r.pcbMtd > 0 ? r.pcbMtd.toFixed(2) : '0.00'}</td>
+          <td class="mono">${escHtml(r.bankBic)}</td>
+          <td class="num mono" style="font-weight:700;color:var(--navy);">${r.netPay.toFixed(2)}</td>
+        </tr>`;
+      }).join('');
+    }
+
+    window.setRowFilter = (f, btn) => {
+      activeRowFilter = f;
+      btn.parentElement.querySelectorAll('.seg-btn').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderTableRows();
+    };
+
+    window.setInspectorView = (mode, btn) => {
+      btn.parentElement.querySelectorAll('.seg-btn').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      const tbl = document.getElementById('ledgerTableWrap');
+      const box = document.getElementById('byteInspectorBox');
+      if (mode === 'BYTES' && currentAudit) {
+        tbl.style.display = 'none';
+        box.style.display = 'block';
+        box.textContent = buildFixedWidthPreviewSnippet(currentAudit);
+      } else {
+        tbl.style.display = 'block';
+        box.style.display = 'none';
+      }
+    };
+
+    window.runAudit = () => {
+      const csvText = document.getElementById('rawCsvBox').value;
+      if (csvText.length > MAX_CSV_BYTES) {
+        document.getElementById('loadedFileLabel').textContent = 'CSV exceeds 10 MB limit.';
+        return;
+      }
+      const parsed = parseCsv(csvText);
+      if (!parsed.rows.length) return;
+      if (parsed.rows.length > MAX_BATCH_ROWS) {
+        document.getElementById('loadedFileLabel').textContent = `Batch exceeds ${MAX_BATCH_ROWS.toLocaleString()} employees limit.`;
+        return;
+      }
+
+      currentAudit = diagnoseAndRepairPayroll(parsed.rows, {
+        companyName: document.getElementById('empCompany').value,
+        ssmNo: document.getElementById('empSsm').value,
+        kwspEmployerNo: document.getElementById('empKwsp').value,
+        perkesoCode: document.getElementById('empPerkeso').value,
+        lhdnEmployerNo: document.getElementById('empLhdn').value,
+        salaryMonth: document.getElementById('empMonth').value,
+      });
+
+      document.getElementById('resultsPanel').style.display = 'block';
+      const d = currentAudit.diagnostics;
+      const t = d.totals;
+      document.getElementById('totalsSummary').textContent =
+        `Gross: RM ${t.grossWages.toLocaleString('en-MY', { minimumFractionDigits: 2 })} · KWSP: RM ${t.kwspTotal.toFixed(2)} · PERKESO/EIS: RM ${t.perkesoTotal.toFixed(2)} · Net Pay: RM ${t.netSalaryTotal.toLocaleString('en-MY', { minimumFractionDigits: 2 })}`;
+
+      const stats = [
+        ['Staff Audited', 'Active payroll rows', d.totalEmployees, ''],
+        ['MyKad / ID Fixes', 'Leading 0s & hyphens', d.leadingZeroFixes, d.leadingZeroFixes ? 'fix' : ''],
+        ['2% Foreign EPF', 'Oct 2025+ KWSP rule', d.foreignWorkerEpfs, d.foreignWorkerEpfs ? 'fix' : ''],
+        ['Cat 2 / EIS Exempt', '60+ & Foreign staff', d.cat2SeniorOrForeignRoutes, d.cat2SeniorOrForeignRoutes ? 'fix' : ''],
+        ['CP39 & BIC Mapped', 'TINs + 8-char SWIFT', d.pcbTinNormalizations + d.bankBicMappings, 'fix'],
+      ];
+      document.getElementById('diagStats').innerHTML = stats
+        .map(([title, sub, val, cls]) => `
+          <div class="metric-cell">
+            <div class="metric-val ${cls}">${val}</div>
+            <div class="metric-lbl">${title}</div>
+            <div class="metric-sub">${sub}</div>
+          </div>
+        `).join('');
+
+      renderTableRows();
+      const inspectorMode = document.querySelector('#resultsPanel .segmented:last-child .seg-btn.active')?.textContent;
+      if (inspectorMode?.includes('Byte Preview')) {
+        document.getElementById('byteInspectorBox').textContent = buildFixedWidthPreviewSnippet(currentAudit);
+      }
+
+      const n = d.totalEmployees;
+      document.getElementById('btnFreeSample2').style.display = !isUnlocked && n > 2 ? 'inline-flex' : 'none';
+      document.getElementById('exportSummaryText').textContent = isUnlocked
+        ? `Lifetime License Active: Ready to export all ${n} employees across all 4 portals.`
+        : `Free Try exports up to 2 employees to test on portals. Unlock Lifetime (RM 39 once) to export all ${n} employees.`;
+    };
+
+    function triggerDownload(filename, content, mime) {
+      const blob = new Blob([content], { type: mime });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      a.click();
+    }
+
+    window.exportPortalFile = async (formatKind, sampleTwoOnly = false) => {
+      if (!currentAudit) return;
+      const totalStaff = currentAudit.employees.length;
+      if (!sampleTwoOnly && !isUnlocked && totalStaff > 2) {
+        window.openUnlockDrawer('MYPAYROL');
+        return;
+      }
+
+      const payloadEmployees = sampleTwoOnly ? currentAudit.employees.slice(0, 2) : currentAudit.employees;
+      const prevText = document.getElementById('exportSummaryText').textContent;
+      document.getElementById('exportSummaryText').textContent = `Compiling ${formatKind} in stateless cloud RAM...`;
+
+      try {
+        const res = await fetch(CLOUD_AUTOPAY_EXEC_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            action: 'compilePayrollExport',
+            kind: formatKind,
+            licenseKey: sampleTwoOnly ? '' : (localStorage.getItem('zyk_mypayroll_key') || ''),
+            employer: currentAudit.employer,
+            employees: payloadEmployees,
+          }),
+        });
+        const data = await res.json();
+        if (!data || !data.ok) {
+          if (data?.requiresLicense) {
+            localStorage.removeItem('zyk_mypayroll_key');
+            refreshUnlockUi();
+            window.runAudit();
+            window.openUnlockDrawer('MYPAYROL');
+            const msg = document.getElementById('keyMsg');
+            msg.style.color = 'var(--crimson)';
+            msg.textContent = data.error || 'Lifetime License required for > 2 employees.';
+            return;
+          }
+          document.getElementById('exportSummaryText').textContent = data?.error || 'Export failed — please retry.';
+          return;
+        }
+        document.getElementById('exportSummaryText').textContent = prevText;
+        triggerDownload(sampleTwoOnly ? `SAMPLE2_${data.filename}` : data.filename, data.content, data.mime);
+      } catch {
+        document.getElementById('exportSummaryText').textContent = 'Network error reaching compiler — please retry.';
+      }
+    };
+
+    window.selectTier = (tier) => {
+      activeCheckoutProduct = tier === 'MYBUND' ? 'MYBUND' : 'MYPAYROL';
+      const isBundle = activeCheckoutProduct === 'MYBUND';
+      document.getElementById('tierBtnSingle').classList.toggle('active', !isBundle);
+      document.getElementById('tierBtnBundle').classList.toggle('active', isBundle);
+      document.getElementById('cardProductLabel').textContent = isBundle
+        ? 'Malaysia SME Bundle (MyPayroll + MyInvois)'
+        : 'MyPayroll Statutory Doctor · Lifetime';
+      document.getElementById('cardPriceLabel').textContent = isBundle
+        ? 'USD 14.99 (~RM 55 One-time · Save 22%)'
+        : 'USD 9.99 (~RM 39 One-time)';
+      document.getElementById('cardCoverageLabel').textContent = isBundle
+        ? '1 Master Key unlocks BOTH MyPayroll & MyInvois forever'
+        : 'Unlimited staff & unlimited companies';
+      document.getElementById('polarCardBuyLink').href = isBundle
+        ? POLAR_CHECKOUT_LINKS.MYBUND
+        : POLAR_CHECKOUT_LINKS.MYPAYROL;
+      document.getElementById('licenseInput').placeholder = isBundle
+        ? 'ZYK-MYBUND-XXXXXXXX-XXXXXXXXXX'
+        : 'ZYK-MYPAYR-XXXXXXXX-XXXXXXXXXX';
+      if (activePaymentRail === 'WISE') window.startAutoOrder();
+    };
+
+    window.selectPaymentRail = (rail) => {
+      activePaymentRail = rail === 'WISE' ? 'WISE' : 'CARD';
+      document.getElementById('railBtnCard').classList.toggle('active', activePaymentRail === 'CARD');
+      document.getElementById('railBtnWise').classList.toggle('active', activePaymentRail === 'WISE');
+      document.getElementById('cardPaySection').style.display = activePaymentRail === 'CARD' ? 'block' : 'none';
+      document.getElementById('wisePaySection').style.display = activePaymentRail === 'WISE' ? 'block' : 'none';
+      if (activePaymentRail === 'WISE') window.startAutoOrder();
+      else if (pollTimer) clearInterval(pollTimer);
+    };
+
+    window.openUnlockDrawer = (product = 'MYPAYROL') => {
+      document.getElementById('unlockDrawer').classList.add('open');
+      window.selectTier(product);
+      window.selectPaymentRail('CARD');
+    };
+    window.closeUnlockDrawer = () => {
+      document.getElementById('unlockDrawer').classList.remove('open');
+      if (pollTimer) clearInterval(pollTimer);
+    };
+
+    window.copyText = async (val, btn) => {
+      await navigator.clipboard.writeText(val);
+      const prev = btn.textContent;
+      btn.textContent = 'Copied';
+      setTimeout(() => { btn.textContent = prev; }, 1200);
+    };
+    window.copyExactAmount = (btn) => window.copyText(document.getElementById('exactPayAmount').getAttribute('data-raw') || '39.01', btn);
+    window.copyOrderRef = (btn) => window.copyText(document.getElementById('exactOrderRef').textContent, btn);
+
+    window.activateManualKey = async () => {
+      const key = document.getElementById('licenseInput').value.trim().toUpperCase();
+      const msg = document.getElementById('keyMsg');
+      if (!key) {
+        msg.style.color = 'var(--crimson)';
+        msg.textContent = 'Please paste your ZYK license key first.';
+        return;
+      }
+      msg.style.color = 'var(--ink-secondary)';
+      msg.textContent = 'Verifying cryptographic signature...';
+      try {
+        const qs = new URLSearchParams({ action: 'verifyKey', key, product: 'MYPAYROL' });
+        const res = await fetch(`${CLOUD_AUTOPAY_EXEC_URL}?${qs.toString()}`);
+        const data = await res.json();
+        if (data?.valid) {
+          localStorage.setItem('zyk_mypayroll_key', key);
+          refreshUnlockUi();
+          if (currentAudit) window.runAudit();
+          msg.style.color = 'var(--emerald-dark)';
+          msg.textContent = data.productCode === 'MYBUND'
+            ? 'Master SME Bundle Activated! Use this same key on MyInvois Batch Doctor too.'
+            : 'Unlocked! Unlimited monthly statutory exports active forever.';
+          setTimeout(() => window.closeUnlockDrawer(), 1300);
+        } else {
+          msg.style.color = 'var(--crimson)';
+          msg.textContent = 'Invalid license key for MyPayroll. Please double-check.';
+        }
+      } catch {
+        msg.style.color = 'var(--crimson)';
+        msg.textContent = 'Could not reach verification server — please retry.';
+      }
+    };
+
+    window.startAutoOrder = async () => {
+      const baseAmount = activeCheckoutProduct === 'MYBUND' ? 55 : 39;
+      const buyerEmail = document.getElementById('buyerEmailInput').value.trim();
+      document.getElementById('orderPollStatus').textContent = 'Generating unique sen amount...';
+      if (pollTimer) clearInterval(pollTimer);
+      try {
+        const qs = new URLSearchParams({
+          action: 'createOrder',
+          productCode: activeCheckoutProduct,
+          currency: 'MYR',
+          baseAmount: String(baseAmount),
+          buyerEmail,
+        });
+        const data = await (await fetch(`${CLOUD_AUTOPAY_EXEC_URL}?${qs.toString()}`)).json();
+        if (!data?.ok || !data.order) throw new Error('Order error');
+        const order = data.order;
+        activeOrderId = order.orderId;
+        const amtEl = document.getElementById('exactPayAmount');
+        amtEl.textContent = `${order.currency} ${order.exactAmountFormatted}`;
+        amtEl.setAttribute('data-raw', order.exactAmountFormatted);
+        document.getElementById('exactOrderRef').textContent = order.orderId;
+        document.getElementById('orderPollStatus').textContent = 'Waiting for Wise transfer (24/7 Cloud AutoPay)...';
+
+        let ticks = 0;
+        pollTimer = setInterval(async () => {
+          ticks++;
+          try {
+            const stQs = new URLSearchParams({ action: 'orderStatus', orderId: order.orderId, ...(ticks % 3 === 0 ? { checkNow: '1' } : {}) });
+            const st = await (await fetch(`${CLOUD_AUTOPAY_EXEC_URL}?${stQs.toString()}`)).json();
+            if (st.status === 'PAID' && st.licenseKey) {
+              clearInterval(pollTimer);
+              document.getElementById('licenseInput').value = st.licenseKey;
+              await window.activateManualKey();
+            }
+          } catch {}
+        }, 4000);
+      } catch {
+        document.getElementById('orderPollStatus').textContent = 'Include your email in Wise note for automatic delivery.';
+      }
+    };
+
+    window.verifyNowManualTrigger = async () => {
+      if (!activeOrderId) return;
+      document.getElementById('orderPollStatus').textContent = 'Checking Wise inbox now...';
+      try {
+        const stQs = new URLSearchParams({ action: 'orderStatus', orderId: activeOrderId, checkNow: '1' });
+        const st = await (await fetch(`${CLOUD_AUTOPAY_EXEC_URL}?${stQs.toString()}`)).json();
+        if (st.status === 'PAID' && st.licenseKey) {
+          if (pollTimer) clearInterval(pollTimer);
+          document.getElementById('licenseInput').value = st.licenseKey;
+          await window.activateManualKey();
+        } else {
+          document.getElementById('orderPollStatus').textContent = 'Not arrived yet — Wise emails usually arrive within 15s.';
+        }
+      } catch {}
+    };
+
+    async function redeemPolarCheckoutOnReturn(checkoutId) {
+      const banner = document.getElementById('polarReturnBanner');
+      const statusEl = document.getElementById('polarReturnStatus');
+      banner.style.display = 'block';
+      statusEl.textContent = 'Verifying your card payment with Polar...';
+      for (let attempt = 0; attempt < 8; attempt++) {
+        try {
+          const qs = new URLSearchParams({ action: 'redeemPolarCheckout', checkoutId });
+          const data = await (await fetch(`${CLOUD_AUTOPAY_EXEC_URL}?${qs.toString()}`)).json();
+          if (data?.ok && data.status === 'PAID' && data.licenseKey) {
+            statusEl.textContent = `Payment Confirmed! Key: ${data.licenseKey}`;
+            document.getElementById('licenseInput').value = data.licenseKey;
+            await window.activateManualKey();
+            window.history.replaceState({}, '', window.location.pathname);
+            return;
+          }
+          if (data?.status && data.status !== 'PROCESSING') {
+            statusEl.textContent = `Checkout status: ${data.status}. Complete payment or paste emailed key below.`;
+            return;
+          }
+        } catch {}
+        await new Promise((r) => setTimeout(r, 1600));
+      }
+      statusEl.textContent = 'Check your email inbox for your automatic License Key receipt.';
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('demo') === '1') window.loadSamplePayroll();
+    if (urlParams.get('unlock') === '1') window.openUnlockDrawer('MYPAYROL');
+    if (urlParams.get('checkout') === 'MYBUND') window.openUnlockDrawer('MYBUND');
+    const returnedCheckoutId = urlParams.get('checkout_id');
+    if (returnedCheckoutId) {
+      window.openUnlockDrawer(urlParams.get('checkout') === 'MYBUND' ? 'MYBUND' : 'MYPAYROL');
+      redeemPolarCheckoutOnReturn(returnedCheckoutId);
+    }
+  </script>
+</body>
+</html>
