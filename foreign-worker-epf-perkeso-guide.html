@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-MY">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://*.googleusercontent.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buy.polar.sh https://polar.sh;" />
+  <title>Malaysia 2026 Employer Guide: 2% Foreign Worker EPF (KWSP), RM 6,000 PERKESO ASSIST &amp; CP39 File Upload Rules</title>
+  <meta name="description" content="Practical 2026 guide for Malaysian SMEs submitting monthly KWSP i-Akaun (including 2% Foreign Worker EPF), PERKESO ASSIST 244-byte fixed-width TXT, and LHDN CP39 text files before the 15th." />
+  <link rel="canonical" href="https://hyperfetch-tools.github.io/mypayroll/foreign-worker-epf-perkeso-guide.html" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body { margin:0; font-family:"Plus Jakarta Sans",sans-serif; background:#f8fafc; color:#0f172a; line-height:1.68; }
+    .wrap { max-width:800px; margin:0 auto; padding:42px 22px 76px; }
+    code { font-family:"IBM Plex Mono",monospace; font-size:0.9em; background:#e2e8f0; padding:2px 6px; border-radius:4px; }
+    h1 { font-size:30px; line-height:1.22; letter-spacing:-0.02em; margin:10px 0 14px; color:#0b1f3a; }
+    h2 { font-size:20px; margin:30px 0 10px; color:#0b1f3a; }
+    .card { background:#fff; border:1px solid #cbd5e1; border-radius:10px; padding:20px 24px; margin:22px 0; }
+    .cta { display:inline-block; background:#059669; color:#fff; text-decoration:none; font-weight:700; padding:11px 20px; border-radius:8px; margin-top:10px; }
+    table { width:100%; border-collapse:collapse; font-size:13.5px; background:#fff; border:1px solid #cbd5e1; margin-top:10px; }
+    th, td { padding:10px 12px; border-bottom:1px solid #e2e8f0; text-align:left; }
+    th { background:#f1f5f9; font-size:12px; text-transform:uppercase; color:#475569; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <p><a href="./index.html" style="color:#0b1f3a;font-weight:700;text-decoration:none;">← MyPayroll Statutory Doctor</a> · <a href="./app.html" style="color:#059669;font-weight:700;text-decoration:none;">Open Statutory Converter Studio →</a></p>
+    <div style="font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#059669;">Malaysia Employer Statutory Guide (2026)</div>
+    <h1>How to Fix KWSP i-Akaun, PERKESO ASSIST &amp; LHDN CP39 Upload Rejections (Including 2% Foreign Worker EPF)</h1>
+    <p>
+      Every Malaysian employer must submit EPF (KWSP), SOCSO + EIS (PERKESO ASSIST), and MTD/PCB (LHDN e-Data PCB / e-PCB Plus) before the <strong>15th of every month</strong>. Yet editing salary sheets in Microsoft Excel routinely triggers upload rejections because Excel strips leading zeros on MyKad numbers, formats decimals instead of integer cents, and misses the latest statutory rules.
+    </p>
+
+    <div class="card">
+      <strong>Convert Your Salary Sheet in 15 Seconds:</strong> Drop your monthly Excel CSV into MyPayroll Statutory Doctor to generate all 4 portal-compliant files (KWSP CSV, PERKESO 244-byte TXT, LHDN CP39 TXT &amp; DuitNow Bulk Salary CSV) with zero monthly per-employee fees.<br/>
+      <a class="cta" href="./app.html">Open Payroll Statutory Converter →</a>
+    </div>
+
+    <h2>1. Mandatory 2% Foreign Worker EPF + PERKESO Rules</h2>
+    <table>
+      <thead>
+        <tr><th>Worker Profile</th><th>KWSP (EPF)</th><th>PERKESO SOCSO (Act 4)</th><th>EIS / SIP (Act 800)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Malaysian Citizen (&lt; 60 yrs)</td><td>13%/12% Employer · 11% Employee</td><td>Category 1 (capped at RM 6,000)</td><td>0.2% + 0.2% (max RM 11.90 each)</td></tr>
+        <tr><td>Malaysian Senior (60–74 yrs)</td><td>4% Employer · 0% Employee</td><td>Category 2 (Employer injury scheme only, max RM 74.40)</td><td>Exempt (<code>000000</code>)</td></tr>
+        <tr><td>Foreign Worker (&lt; 75 yrs)</td><td><strong>2% Employer · 2% Employee</strong></td><td>Category 2 (Employer Injury Scheme only)</td><td>Exempt (<code>000000</code>)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>2. Top 4 Causes of Government Portal File Rejections</h2>
+    <ul>
+      <li><strong>KWSP Contribution Month Mismatch:</strong> KWSP i-Akaun requires the <em>Contribution Month</em> to be <strong>1 month ahead</strong> of the salary month (e.g., October salary = November contribution).</li>
+      <li><strong>Excel Stripping Leading Zeros on Post-2000 MyKad:</strong> Staff born in 2000–2009 have NRICs starting with <code>00</code>–<code>09</code>. Excel exports <code>020415145678</code> as <code>20415145678</code> (11 digits), causing immediate row rejection.</li>
+      <li><strong>PERKESO ASSIST 244-Byte Integer Cents Rule:</strong> PERKESO ASSIST rejects decimals like <code>3500.00</code>—all wages and contributions must be padded integer cents (<code>00000000350000</code>).</li>
+      <li><strong>LHDN CP39 Fixed-Width 57/136-Byte Layout:</strong> Employer numbers must omit the letter <code>E</code> and Employee TINs must omit the <code>IG</code> prefix inside the 10-digit numeric column.</li>
+    </ul>
+  </main>
+</body>
+</html>
